@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Halo Dunia</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+    }
+
+    .page {
+      display: none;
+      height: 100%;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .home {
+      background-color: #2563eb;
+      color: white;
+      text-align: center;
+    }
+
+    .group-page, .list-page {
+      background-color: #2563eb;
+      color: white;
+      text-align: center;
+    }
+
+    .btn {
+      background-color: #facc15;
+      color: #000;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .btn-back {
+      background-color: white;
+      color: #2563eb;
+      border: 2px solid #fff;
+    }
+
+    .list-item {
+      background-color: #e0f2fe;
+      color: #000;
+      margin: 5px 0;
+      padding: 10px 15px;
+      text-align: center;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Halaman Awal -->
+  <div class="page home active" id="homePage">
+    <h1>Selamat Datang di</h1>
+    <h2>11 Saintek 4!</h2>
+    <button class="btn" onclick="goToGroups()">Menuju Daftar Siswa/i</button>
+  </div>
+
+  <!-- Pilihan Kelompok -->
+  <div class="page group-page" id="groupPage">
+    <h2>Pilih Kelompok</h2>
+    <button class="btn" onclick="showList(1)">Kelompok 1</button>
+    <button class="btn" onclick="showList(2)">Kelompok 2</button>
+    <button class="btn" onclick="showList(3)">Kelompok 3</button>
+    <button class="btn btn-back" onclick="goBackToHome()">Kembali</button>
+  </div>
+
+  <!-- Halaman Daftar -->
+  <div class="page list-page" id="listPage">
+    <h3 id="listTitle">Daftar</h3>
+    <div id="wordList"></div>
+    <button class="btn btn-back" onclick="goBackToGroups()">Kembali</button>
+  </div>
+
+  <script>
+    const groupData = {
+      1: ["Adly", "Evan", "Farras", "Atha", "Aluna", "Nathalie", "Aura", "Shafa", "Aca", "Safina", "Najwa", "Fadiya"],
+      2: ["Zaidan", "Fajril", "Dimas", "Bayu", "Fuzi", "Deswinta", "Jeje", "Eriana", "Kezia. A", "Tiara", "Philia", "Ratna"],
+      3: ["Arsya", "Athalla", "Fahrizha", "Illham", "Naraya", "Aqiela", "Peliza", "Nabila", "Alen", "Eca", "Kezia. F", "Adilia"]
+    };
+
+    function goToGroups() {
+      showPage('groupPage');
+    }
+
+    function showList(groupNumber) {
+      const listContainer = document.getElementById('wordList');
+      const title = document.getElementById('listTitle');
+      listContainer.innerHTML = '';
+      title.textContent = `Daftar Kelompok ${groupNumber}`;
+      groupData[groupNumber].forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'list-item';
+        div.textContent = `${index + 1}. ${item}`;
+        listContainer.appendChild(div);
+      });
+      showPage('listPage');
+    }
+
+    function goBackToHome() {
+      showPage('homePage');
+    }
+
+    function goBackToGroups() {
+      showPage('groupPage');
+    }
+
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
