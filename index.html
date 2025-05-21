@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>P5 11 Saintek 4</title>
+  <title>Halo Dunia</title>
   <style>
     * {
       margin: 0;
@@ -68,8 +68,8 @@
       color: #000;
       margin: 5px 0;
       padding: 10px 15px;
-      text-align: center;
       border-radius: 8px;
+      text-align: center;
       width: 100%;
       max-width: 300px;
     }
@@ -99,7 +99,7 @@
     <button class="btn btn-back" onclick="goBackToHome()">Kembali</button>
   </div>
 
-  <!-- Halaman Daftar -->
+  <!-- Halaman Daftar dan Project -->
   <div class="page list-page" id="listPage">
     <h3 id="listTitle">Daftar</h3>
     <div id="wordList"></div>
@@ -108,9 +108,21 @@
 
   <script>
     const groupData = {
-      1: ["Adly", "Evan", "Farras", "Atha", "Aluna", "Nathalie", "Aura", "Shafa", "Aca", "Safina", "Najwa", "Fadiya"],
-      2: ["Zaidan", "Fajril", "Dimas", "Bayu", "Fuzi", "Deswinta", "Jeje", "Eriana", "Kezia. A", "Tiara", "Philia", "Ratna"],
-      3: ["Arsya", "Athalla", "Fahrizha", "Illham", "Naraya", "Aqiela", "Peliza", "Nabila", "Alen", "Eca", "Kezia. F", "Adilia"]
+      1: {
+        project: "Sistem Informasi Sekolah",
+        members: ["Apel", "Jeruk", "Mangga", "Pisang", "Semangka", "Melon", "Anggur", "Durian", "Salak", "Pepaya", "Nanas", "Jambu"],
+        projectPage: "project/project1.html"
+      },
+      2: {
+        project: "Aplikasi Kesehatan Sederhana",
+        members: ["Tomat", "Mentimun", "Wortel", "Bayam", "Kangkung", "Brokoli", "Sawi", "Lobak", "Terong", "Cabe", "Bawang", "Jahe"],
+        projectPage: "project/project2.html"
+      },
+      3: {
+        project: "Website Resep Masakan",
+        members: ["Ayam", "Ikan", "Daging", "Telur", "Tahu", "Tempe", "Udang", "Kepiting", "Kerang", "Sosis", "Bakso", "Sarden"],
+        projectPage: "project/project3.html"
+      }
     };
 
     function goToGroups() {
@@ -121,13 +133,23 @@
       const listContainer = document.getElementById('wordList');
       const title = document.getElementById('listTitle');
       listContainer.innerHTML = '';
-      title.textContent = `Daftar Kelompok ${groupNumber}`;
-      groupData[groupNumber].forEach((item, index) => {
+      title.textContent = `Kelompok ${groupNumber}`;
+
+      // Tombol Project
+      const projectBtn = document.createElement('button');
+      projectBtn.className = 'btn';
+      projectBtn.textContent = `Lihat Project: ${groupData[groupNumber].project}`;
+      projectBtn.onclick = () => window.location.href = groupData[groupNumber].projectPage;
+      listContainer.appendChild(projectBtn);
+
+      // Daftar Anggota
+      groupData[groupNumber].members.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'list-item';
         div.textContent = `${index + 1}. ${item}`;
         listContainer.appendChild(div);
       });
+
       showPage('listPage');
     }
 
