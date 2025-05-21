@@ -83,14 +83,12 @@
 </head>
 <body>
 
-  <!-- Halaman Awal -->
   <div class="page home active" id="homePage">
     <h1>Selamat Datang di</h1>
     <h2>11 Saintek 4!</h2>
     <button class="btn" onclick="goToGroups()">Menuju Daftar Siswa/i</button>
   </div>
 
-  <!-- Pilihan Kelompok -->
   <div class="page group-page" id="groupPage">
     <h2>Pilih Kelompok</h2>
     <button class="btn" onclick="showList(1)">Kelompok 1</button>
@@ -99,7 +97,6 @@
     <button class="btn btn-back" onclick="goBackToHome()">Kembali</button>
   </div>
 
-  <!-- Halaman Daftar dan Project -->
   <div class="page list-page" id="listPage">
     <h3 id="listTitle">Daftar</h3>
     <div id="wordList"></div>
@@ -109,18 +106,18 @@
   <script>
     const groupData = {
       1: {
-        project: "Sistem Informasi Sekolah",
-        members: ["Apel", "Jeruk", "Mangga", "Pisang", "Semangka", "Melon", "Anggur", "Durian", "Salak", "Pepaya", "Nanas", "Jambu"],
+        project: "Smart Agriculture Irrigation System",
+        members: ["Adly", "Evan", "Farras", "Atha", "Aluna", "Nathalie", "Aura", "Shafa", "Aca", "Safina", "Najwa", "Fadiya"],
         projectPage: "project/project1.html"
       },
       2: {
-        project: "Aplikasi Kesehatan Sederhana",
-        members: ["Tomat", "Mentimun", "Wortel", "Bayam", "Kangkung", "Brokoli", "Sawi", "Lobak", "Terong", "Cabe", "Bawang", "Jahe"],
+        project: "Mini Refrigerator",
+        members: ["Zaidan", "Fajril", "Dimas", "Bayu", "Fuzi", "Deswinta", "Jeje", "Eriana", "Kezia. A", "Tiara", "Philia", "Ratna"],
         projectPage: "project/project2.html"
       },
       3: {
-        project: "Website Resep Masakan",
-        members: ["Ayam", "Ikan", "Daging", "Telur", "Tahu", "Tempe", "Udang", "Kepiting", "Kerang", "Sosis", "Bakso", "Sarden"],
+        project: "Smoke & Flame Detector",
+        members: ["Arsya", "Athalla", "Fahrizha", "Illham", "Naraya", "Aqiela", "Peliza", "Nabila", "Alen", "Eca", "Kezia. F", "Adilia"],
         projectPage: "project/project3.html"
       }
     };
@@ -135,14 +132,12 @@
       listContainer.innerHTML = '';
       title.textContent = `Kelompok ${groupNumber}`;
 
-      // Tombol Project
       const projectBtn = document.createElement('button');
       projectBtn.className = 'btn';
       projectBtn.textContent = `Lihat Project: ${groupData[groupNumber].project}`;
       projectBtn.onclick = () => window.location.href = groupData[groupNumber].projectPage;
       listContainer.appendChild(projectBtn);
 
-      // Daftar Anggota
       groupData[groupNumber].members.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'list-item';
